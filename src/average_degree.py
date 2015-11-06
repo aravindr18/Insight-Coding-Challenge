@@ -1,3 +1,6 @@
+# program that constructs graphs from hashtags within the 60 seconds window
+#!/usr/bin/env python
+
 from __future__ import division
 import sys
 import simplejson as json
@@ -11,7 +14,7 @@ import time
 
 
 class Graph(object):
-    """ Graph data structure, undirected by default. """
+    # Graph data structure, undirected by default
     def __init__(self, connections, directed=False):
         self._graph = defaultdict(set)
         self._directed = directed
@@ -21,20 +24,20 @@ class Graph(object):
         return self
     
     def add_connections(self, connections):
-        """ Add connections (list of tuple pairs) to graph """
+        #Add connections (list of tuple pairs) to graph
         
         for node1, node2 in connections:
             self.add(node1, node2)
 
     def add(self, node1, node2):
-        """ Add connection between node1 and node2 """
+        #Add connection between node1 and node2 
 
         self._graph[node1].add(node2)
         if not self._directed:
             self._graph[node2].add(node1)
 
 def set_date(date_str):
-    """Convert string to datetime"""
+    #Convert string to datetime
     time_struct = time.strptime(date_str, "%a %b %d %H:%M:%S +0000 %Y") #Tue Apr 21 10:05:15 +0000 2015
     date = datetime.fromtimestamp(time.mktime(time_struct))
     return date
@@ -60,7 +63,7 @@ def filter_json(data):
     hashtags_extract = []
     timestamp = []
     count=0
-    
+    # extract timestamp and hashtags and store in a list
     for i in data:   
         try:
             timestamp.append(i['created_at'])

@@ -1,4 +1,4 @@
-# example of program that calculates the number of tweets cleaned
+# program that calculates the number of tweets cleaned
 #!/usr/bin/env python
 
 # importing the necessary module
